@@ -38,8 +38,8 @@ public class MainController {
 		return result;
 	}
 
-	@ApiOperation(value = "Lista todos os cadastrados.")
 	@CrossOrigin(origins = "*")
+	@ApiOperation(value = "Lista todos os cadastrados.")
 	@GetMapping(path = "/all")
 	public @ResponseBody Iterable<Client> getAllClients() {
 		return clientRepository.findAll();

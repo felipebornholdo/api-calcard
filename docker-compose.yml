@@ -1,20 +1,31 @@
 version: '3'
 services:
- docker-app:
+  wait:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - docker-mysql
+      - docker-app
+    command: docker-mysql:3306
+  docker-mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=calcard
+      - MYSQL_PASSWORD=1234
+  docker-app:
     image: calcard/calcard-test
     ports:
       - "8080:8080"
     depends_on:
       - docker-mysql
+    command: >
+      /bin/bash -c "
+        nc -z docker-mysql 3306 &&
+        echo Connected to DB and started!"
+
     environment:
       - DATABASE_HOST=docker-mysql
       - DATABASE_USER=root
       - DATABASE_PASSWORD=1234
       - DATABASE_NAME=calcard
       - DATABASE_PORT=3306
- docker-mysql:
-    image: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=calcard
-      - MYSQL_PASSWORD=1234

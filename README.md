@@ -3,17 +3,27 @@
 Executando Spring Boot com Docker
 
 ## Pré requisitos
-- Gradle
+- Maven
 - Java 8
 - Docker 1.13.0+
 
 ## Construindo o ambiente backend
 ```
-calcard-api$ ./gradlew build -x test
+calcard-api$ mvn clean -Dmaven.test.skip=true package
  ```
-docker build --build-arg JAR_FILE=build/libs/*.jar -t callcard/callcard-test .
+ ```
+docker build --build-arg JAR_FILE=target/*.jar -t calcard/calcard-test .
 ```
-docker-compose up
+ ```
+docker-compose run --rm wait
+```
+
+```
+Aguardar inicialização do mysql.
+```
+
+```
+docker-compose up docker-app
 ```
 
 ## Documentação Swagger
