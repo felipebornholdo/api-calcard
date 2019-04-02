@@ -1,0 +1,20 @@
+version: '3'
+services:
+ docker-app:
+    image: calcard/calcard-test
+    ports:
+      - "8080:8080"
+    depends_on:
+      - docker-mysql
+    environment:
+      - DATABASE_HOST=docker-mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=1234
+      - DATABASE_NAME=calcard
+      - DATABASE_PORT=3306
+ docker-mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=calcard
+      - MYSQL_PASSWORD=1234
