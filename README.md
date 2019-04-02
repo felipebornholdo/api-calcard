@@ -9,7 +9,7 @@ Executando Spring Boot com Docker
 
 ## Construindo o ambiente backend
 ```
-calcard-api$ mvn clean -Dmaven.test.skip=true package
+mvn clean -Dmaven.test.skip=true package
  ```
  ```
 docker build --build-arg JAR_FILE=target/*.jar -t calcard/calcard-test .
@@ -19,7 +19,7 @@ docker-compose run --rm wait
 ```
 
 ```
-Aguardar inicialização do mysql.
+/* Aguardar inicialização do mysql. */
 ```
 
 ```
