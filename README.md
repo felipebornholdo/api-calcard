@@ -8,9 +8,11 @@ Executando Spring Boot com Docker
 - Docker 1.13.0+
 
 ## Construindo o ambiente backend
-
+```
 calcard-api$ ./gradlew build -x test
+ ```
 docker build --build-arg JAR_FILE=build/libs/*.jar -t callcard/callcard-test .
+```
 docker-compose up
 
 ## Documentação Swagger
